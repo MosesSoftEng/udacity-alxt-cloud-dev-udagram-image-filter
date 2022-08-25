@@ -6,10 +6,14 @@ Application server for filtering images in the Udagram web application that will
 
 ## Sample results
 Initial Image curtesy of imgur.com
+
 ![Cat walking](https://i.imgur.com/WvcU1zU.jpeg)
 
+
 Filtered Image
+
 ![Filtered cat image](images/filteredimage.jpg)
+
 
 ## NOTE! Project provided test images issues.
 [https://timedotcom.files.wordpress.com/2019/03/kitten-report.jpg](https://timedotcom.files.wordpress.com/2019/03/kitten-report.jpg)
@@ -23,27 +27,35 @@ AWS Elastic Beanstalk
 
 ## Commands used
 Install dependecies in package.json
+
 ```npm install```
 
 Run the application locally
+
 ```npm run dev```
 
 Build application
+
 ```npm run build```
 
 Create Elastic Beanstalk application 
+
 ```eb init```
 
 Create Elastic Beanstalk infrastructure
+
 ```eb deploy```
 
 Deploy/ Update Node.js Changes to Elastic Beanstalk
+
 ```eb create```
 
 ## Third party Packages used in node.js
 [valid-url package](https://www.npmjs.com/package/valid-url)
-npm i valid-url
-npm install @types/valid-url
+
+```npm i valid-url```
+
+```npm install @types/valid-url```
 
 # Reference
 1. [Image Filter Starter source Code](https://github.com/udacity/cloud-developer/tree/master/course-02/project/image-filter-starter-code)
