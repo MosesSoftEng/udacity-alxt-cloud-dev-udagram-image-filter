@@ -5,10 +5,10 @@ Application server for filtering images in the Udagram web application that will
 [http://udagram-image-filter-dev.us-east-1.elasticbeanstalk.com/filteredimage?image_url=https://i.imgur.com/WvcU1zU.jpeg](http://udagram-image-filter-dev.us-east-1.elasticbeanstalk.com/filteredimage?image_url=https://i.imgur.com/WvcU1zU.jpeg)
 
 ### Elastic Beanstalk Application dashboard image
-![Elastic Beanstalk Application dashboard image](deployment_screenshots/deployment-screenshot-udagrma-image-filter-elastic-beanstalk-application-dash.png)
+![Elastic Beanstalk Application dashboard image](deployment_screenshots/deployment-screenshot-udagrma-image-filter-elastic-beanstalk-application-dash-atfter-typescript-corrections.png)
 
 ## Sample results
-Initial Image curtesy of imgur.com
+Initial Image curtesy of imgur.com [https://i.imgur.com/WvcU1zU.jpeg)](https://i.imgur.com/WvcU1zU.jpeg))
 
 ![Cat walking](https://i.imgur.com/WvcU1zU.jpeg)
 

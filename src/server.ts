@@ -2,6 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import {filterImageFromURL, deleteLocalFiles} from './util/util';
 import {isWebUri} from 'valid-url';
+import {Request, Response } from 'express';
 
 
 (async () => {
@@ -33,11 +34,8 @@ import {isWebUri} from 'valid-url';
 
   //! END @TODO1
 
-  app.get("/filteredimage" /* Endpoint URL */,
-    /* async - make a function return a promise */
-    async ( req, res ) => {
-      /* Unpack request parameters */
-      let { image_url } = req.query;
+  app.get("/filteredimage", async (req: Request, res: Response) => {
+      const image_url: string = req.query.image_url;
 
       /* Validate URL */
       if(!image_url || !isWebUri(image_url)) {
@@ -45,11 +43,12 @@ import {isWebUri} from 'valid-url';
       }
 
       /* Filter image */
-      await filterImageFromURL(image_url).then((filteredpath) => {
-        res.status(200).sendFile(filteredpath, () => {
-          deleteLocalFiles([filteredpath])
-        });
-      }).catch((error) => {
+      await filterImageFromURL(image_url).then(
+        (filtered_path: string) => {
+          res.status(200).sendFile(filtered_path, () => {
+            deleteLocalFiles([filtered_path])
+          });
+      }).catch((error: string) => {
         return res.status(400).send({ error: `${error}` });
       });
     }
@@ -57,7 +56,7 @@ import {isWebUri} from 'valid-url';
   
   // Root Endpoint
   // Displays a simple message to the user
-  app.get( "/", async ( req, res ) => {
+  app.get( "/", async ( req: Request, res: Response ) => {
     res.send("try GET /filteredimage?image_url={{}}")
   } );
   
