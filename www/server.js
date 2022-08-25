@@ -14,7 +14,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const body_parser_1 = __importDefault(require("body-parser"));
 const util_1 = require("./util/util");
-/* import valid-url package */
 const valid_url_1 = require("valid-url");
 (() => __awaiter(this, void 0, void 0, function* () {
     // Init the Express application
@@ -23,23 +22,37 @@ const valid_url_1 = require("valid-url");
     const port = process.env.PORT || 8082;
     // Use the body parser middleware for post requests
     app.use(body_parser_1.default.json());
-    /*
-     *  A restful endpoint for filtering images.
-     */
-    app.get("/filteredimage" /* Endpoint URL */, (req, res) => __awaiter(this, void 0, void 0, function* () {
+    // @TODO1 IMPLEMENT A RESTFUL ENDPOINT
+    // GET /filteredimage?image_url={{URL}}
+    // endpoint to filter an image from a public url.
+    // IT SHOULD
+    //    1
+    //    1. validate the image_url query
+    //    2. call filterImageFromURL(image_url) to filter the image
+    //    3. send the resulting file in the response
+    //    4. deletes any files on the server on finish of the response
+    // QUERY PARAMATERS
+    //    image_url: URL of a publicly accessible image
+    // RETURNS
+    //   the filtered image file [!!TIP res.sendFile(filteredpath); might be useful]
+    /**************************************************************************** */
+    //! END @TODO1
+    app.get("/filteredimage" /* Endpoint URL */, 
+    /* async - make a function return a promise */
+    (req, res) => __awaiter(this, void 0, void 0, function* () {
         /* Unpack request parameters */
         let { image_url } = req.query;
         /* Validate URL */
         if (!image_url || !valid_url_1.isWebUri(image_url)) {
-            return res.status(400).send({ message: 'image url not valid' });
+            return res.status(400).send({ error: 'image url not valid' });
         }
         /* Filter image */
         yield util_1.filterImageFromURL(image_url).then((filteredpath) => {
             res.status(200).sendFile(filteredpath, () => {
                 util_1.deleteLocalFiles([filteredpath]);
             });
-        }).catch((err) => {
-            return res.status(422).send({ error: `${err}` });
+        }).catch((error) => {
+            return res.status(400).send({ error: `${error}` });
         });
     }));
     // Root Endpoint

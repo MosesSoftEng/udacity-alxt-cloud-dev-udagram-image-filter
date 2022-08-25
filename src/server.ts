@@ -41,7 +41,7 @@ import {isWebUri} from 'valid-url';
 
       /* Validate URL */
       if(!image_url || !isWebUri(image_url)) {
-        return res.status(400).send({ auth: false, message: 'image url not valid' });
+        return res.status(400).send({ error: 'image url not valid' });
       }
 
       /* Filter image */
@@ -49,8 +49,8 @@ import {isWebUri} from 'valid-url';
         res.status(200).sendFile(filteredpath, () => {
           deleteLocalFiles([filteredpath])
         });
-      }).catch((err) => {
-        return res.status(400).send({ auth: false, message: `${err}` });
+      }).catch((error) => {
+        return res.status(400).send({ error: `${error}` });
       });
     }
   );
