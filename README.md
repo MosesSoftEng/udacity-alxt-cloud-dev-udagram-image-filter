@@ -4,6 +4,9 @@ Application server for filtering images in the Udagram web application that will
 ## Endpoint URL for a running elastic beanstalk deployment (EB_URL)
 [http://udagram-image-filter-dev.us-east-1.elasticbeanstalk.com/filteredimage?image_url=https://i.imgur.com/WvcU1zU.jpeg](http://udagram-image-filter-dev.us-east-1.elasticbeanstalk.com/filteredimage?image_url=https://i.imgur.com/WvcU1zU.jpeg)
 
+### Elastic Beanstalk Application dashboard image
+![Elastic Beanstalk Application dashboard image](deployment_screenshots/deployment-screenshot-udagrma-image-filter-elastic-beanstalk-application-dash.png)
+
 ## Sample results
 Initial Image curtesy of imgur.com
 
