@@ -1,6 +1,8 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import {filterImageFromURL, deleteLocalFiles} from './util/util';
+import {isWebUri} from 'valid-url';
+
 
 (async () => {
 
@@ -30,6 +32,28 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util';
   /**************************************************************************** */
 
   //! END @TODO1
+
+  app.get("/filteredimage" /* Endpoint URL */,
+    /* async - make a function return a promise */
+    async ( req, res ) => {
+      /* Unpack request parameters */
+      let { image_url } = req.query;
+
+      /* Validate URL */
+      if(!image_url || !isWebUri(image_url)) {
+        return res.status(400).send({ auth: false, message: 'image url not valid' });
+      }
+
+      /* Filter image */
+      await filterImageFromURL(image_url).then((filteredpath) => {
+        res.status(200).sendFile(filteredpath, () => {
+          deleteLocalFiles([filteredpath])
+        });
+      }).catch((err) => {
+        return res.status(400).send({ auth: false, message: `${err}` });
+      });
+    }
+  );
   
   // Root Endpoint
   // Displays a simple message to the user
